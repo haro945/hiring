@@ -1,7 +1,7 @@
+import { Plus } from 'lucide-react';
 import { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react'
 
 export const metadata: Metadata = {
@@ -17,12 +17,20 @@ const poppins = Poppins({
 export default function IdMeLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className={`min-h-screen bg-[#dfdfdf] flex flex-col items-center pb-20 ${poppins.variable}`} style={{ fontFamily: 'var(--font-poppins)' }}>
-            <div className="flex w-full bg-white justify-center pt-10 pb-16">
+            <div className="flex items-center gap-4 w-full bg-white justify-center pt-10 pb-16">
                 <Image
                     src={'/id-me-logo.svg'}
                     width={80}
                     height={28}
                     alt='ID.me logo'
+                    className="h-7"
+                />
+                <Plus />
+                <Image
+                    src={'/IRS-Logo.svg'}
+                    width={80}
+                    height={28}
+                    alt='IRS logo'
                     className="h-7"
                 />
             </div>
